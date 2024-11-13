@@ -36,13 +36,13 @@ class PowerUser implements Reader, Writer {
     }
 
     private int generateNewUserId() throws IOException {
-        int Id = 1;
+        int id = 1;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             while (reader.readLine() != null) {
-                Id++;
+                id++;
             }
         }
-        return Id;
+        return id;
     }
 
 

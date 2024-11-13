@@ -6,7 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
 
-        System.out.print("Enter user type (Admin, PowerUser, RegularUser): ");
+        System.out.print("Enter user type (adminUser, powerUser, regularUser): ");
         String userType = scanner.nextLine();
 
         System.out.print("Enter password: ");
@@ -14,7 +14,7 @@ public class Main {
 
 
         if (authenticate(userType, password)) {
-            switch (userType.toLowerCase()) {
+            switch (userType) {
                 case "adminUser":
                     System.out.println("Welcome to the Admin Panel.");
                     AdminUser adminUser = new AdminUser();
@@ -42,9 +42,9 @@ public class Main {
 
 
     private static boolean authenticate(String userType, String password) {
-        return (userType.equalsIgnoreCase("admin") && password.equals("admin123"))
-                || (userType.equalsIgnoreCase("poweruser") && password.equals("power123"))
-                || (userType.equalsIgnoreCase("regularuser") && password.equals("regular123"));
+        return (userType.equalsIgnoreCase("adminUser") && password.equals("admin123"))
+                || (userType.equalsIgnoreCase("powerUser") && password.equals("power123"))
+                || (userType.equalsIgnoreCase("regularUser") && password.equals("regular123"));
     }
 
 
@@ -157,5 +157,4 @@ public class Main {
         }
     }
 }
-
 

@@ -24,9 +24,9 @@ import java.io.IOException;
 
 
     public void writeUsers(String username, String email, String password, String userType) throws IOException {
-        int userId = generateNewUserId();
+        int id = generateNewUserId();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            String newUser = String.join(",", String.valueOf(userId), username, email, password, userType);
+            String newUser = String.join(",", String.valueOf(id), username, email, password, userType);
             writer.write(newUser);
             writer.newLine();
             System.out.println("AdminUser: User added to User.csv.");
@@ -37,13 +37,13 @@ import java.io.IOException;
     }
 
     private int generateNewUserId() throws IOException {
-        int userId = 1;
+        int id = 1;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             while (reader.readLine() != null) {
-                userId++;
+                id++;
             }
         }
-        return userId;
+        return id;
     }
 
 
@@ -61,9 +61,9 @@ import java.io.IOException;
                 String[] fields = line.split(",");
                 if (fields[0].equals(userId)) {
                     userFound = true;
-                    fields[1] = newUsername; // Update Username
-                    fields[2] = newEmail; // Update Email
-                    fields[4] = newUserType; // Update UserType
+                    fields[1] = newUsername;
+                    fields[2] = newEmail;
+                    fields[4] = newUserType;
                     System.out.println("AdminUser: Modifying user with ID " + userId);
                 }
                 writer.write(String.join(",", fields));

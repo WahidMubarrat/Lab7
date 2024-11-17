@@ -112,5 +112,29 @@ public void testRenameFile() {
     }
 
 }
+
+
+    @Test
+    public void testSingletonInstance() {
+
+        FileMaker fileMaker1 = FileMaker.getInstance();
+        FileMaker fileMaker2 = FileMaker.getInstance();
+        assertSame(fileMaker1, fileMaker2, "FileManager is not a singleton instance.");
+    }
+
+    @Test
+    public void testFileCreation() {
+
+        FileMaker fileMaker = FileMaker.getInstance();
+
+        File userFile = fileMaker.getUserFile();
+        File adminFile = fileMaker.getAdminFile();
+
+        assertTrue(userFile.exists(), "User.csv file was not created.");
+        assertTrue(adminFile.exists(), "Admin.csv file was not created.");
+    }
+
+
 }
+
 
